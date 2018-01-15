@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/titre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/fr_pokedex"
+        android:textSize="50dp"/>
+
+    <Button
+        android:id="@+id/btn_kanto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titre"
+        android:layout_centerHorizontal="true"
+        android:text="@string/fr_kanto"
+        android:textSize="30dp"
+        android:onClick="goToKanto"/>
+
+    <Button
+        android:id="@+id/btn_johto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_kanto"
+        android:layout_centerHorizontal="true"
+        android:text="@string/fr_johto"
+        android:textSize="30dp"
+        android:onClick="goToJohto"/>
+
+</RelativeLayout>
