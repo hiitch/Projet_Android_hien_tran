@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Pokepokedex</string>
-    <string name="fr_information">Informations</string>
+    <string name="en_information">Informations</string>
 </resources>
