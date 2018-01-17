@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Pokepokedex</string>
     <string name="en_information">Informations</string>
+    <string name="en_kanto">Kanto</string>
+    <string name="en_johto">Johto</string>
+    <string name="en_pokedex">POKÉDEX</string>
 </resources>

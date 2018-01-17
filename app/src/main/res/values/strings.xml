@@ -4,4 +4,7 @@
     <string name="fr_kanto">Kanto</string>
     <string name="fr_johto">Johto</string>
     <string name="fr_pokedex">POKÉDEX</string>
+    <string name="fr_titre_boite_dialogue">Informations sur nous</string>
+    <string name="fr_message_boite_dialogue">Les créateurs de cette application sont : Alex HIEN et Xian Tien TRAN :D</string>
+    <string name="fr_retour_boite_dialogue">Retour</string>
 </resources>
