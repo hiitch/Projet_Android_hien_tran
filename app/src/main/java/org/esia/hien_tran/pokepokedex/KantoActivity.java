@@ -2,6 +2,8 @@ package org.esia.hien_tran.pokepokedex;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,10 +27,20 @@ public class KantoActivity extends AppCompatActivity {
 
     private Retrofit retrofit;
 
+    private RecyclerView recyclerView;
+    private ListPokemonAdapter listPokemonAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kanto);
+
+        recyclerView =  (RecyclerView) findViewById(R.id.recyclerView);
+        listPokemonAdapter = new ListPokemonAdapter();
+        recyclerView.setAdapter(listPokemonAdapter);
+        recyclerView.setHasFixedSize(true);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+        recyclerView.setLayoutManager(layoutManager);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://pokeapi.co/api/v2/")
@@ -50,10 +62,7 @@ public class KantoActivity extends AppCompatActivity {
                     ResponsePokemon responsePokemon = response.body();
                     ArrayList<Pokemon> listPokemon = responsePokemon.getResults();
 
-                    for(int i=0; i<listPokemon.size(); i++){
-                        Pokemon p = listPokemon.get(i);
-                        Log.i(TAG, "Pokemon: " + p.getName());
-                    }
+                    listPokemonAdapter.addListPokemon(listPokemon);
 
                 } else {
                     Log.e(TAG, " onResponse: " + response.errorBody());
