@@ -1,11 +1,15 @@
 package org.esia.hien_tran.pokepokedex;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.esia.hien_tran.pokepokedex.models.Pokemon;
 
@@ -17,9 +21,11 @@ import java.util.ArrayList;
 
 public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.ViewHolder> {
 
-    public ArrayList<Pokemon> dataset;
+    private ArrayList<Pokemon> dataset;
+    private Context context;
 
-    public ListPokemonAdapter() {
+    public ListPokemonAdapter(Context context) {
+        this.context = context;
         dataset = new ArrayList<>();
     }
 
@@ -34,7 +40,12 @@ public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.
         Pokemon p = dataset.get(position);
         holder.nameTextView.setText(p.getName());
 
-        Glide.with
+        Glide.with(context)
+            .load("http://pokeapi.co/media/sprites/pokemon/" + p.getNumber() + ".png")
+            .centerCrop()
+            .crossFade()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .into(holder.photoImageView);
     }
 
     @Override

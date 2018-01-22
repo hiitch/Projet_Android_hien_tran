@@ -36,7 +36,7 @@ public class KantoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_kanto);
 
         recyclerView =  (RecyclerView) findViewById(R.id.recyclerView);
-        listPokemonAdapter = new ListPokemonAdapter();
+        listPokemonAdapter = new ListPokemonAdapter(this);
         recyclerView.setAdapter(listPokemonAdapter);
         recyclerView.setHasFixedSize(true);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 3);

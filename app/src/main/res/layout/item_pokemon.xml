@@ -8,7 +8,6 @@
         android:id="@+id/photoImageView"
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:background="#B2DFDB"
         android:layout_gravity="center"/>
     
     <TextView
