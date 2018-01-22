@@ -30,6 +30,9 @@ public class KantoActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ListPokemonAdapter listPokemonAdapter;
 
+    private int offset;
+    private boolean bool;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,25 +42,51 @@ public class KantoActivity extends AppCompatActivity {
         listPokemonAdapter = new ListPokemonAdapter(this);
         recyclerView.setAdapter(listPokemonAdapter);
         recyclerView.setHasFixedSize(true);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
+        final GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                if(dy>0){
+                    int visibleItemCount = layoutManager.getChildCount();
+                    int totalItemCount = layoutManager.getItemCount();
+                    int pastVisibleCount = layoutManager.findFirstVisibleItemPosition();
+
+                    if(bool){
+                        if((visibleItemCount + pastVisibleCount) >= totalItemCount){
+                            Log.i(TAG,  "FIN de la liste");
+
+                            bool = false;
+                            offset += 20;
+                            getData(offset );
+                        }
+                    }
+                }
+            }
+        });
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://pokeapi.co/api/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        getData();
+        bool = true;
+
+        offset = 0;
+        getData(offset);
     }
 
-    private void getData(){
+    private void getData(int offset){
         PokeapiService service = retrofit.create(PokeapiService.class);
 
-        Call<ResponsePokemon> pokemonResponseCall=  service.getListPokemon();
+        Call<ResponsePokemon> pokemonResponseCall=  service.getListPokemon(20, offset);
 
         pokemonResponseCall.enqueue(new Callback<ResponsePokemon>() {
             @Override
             public void onResponse(Call<ResponsePokemon> call, Response<ResponsePokemon> response) {
+                bool = true;
                 if(response.isSuccessful()){
                     ResponsePokemon responsePokemon = response.body();
                     ArrayList<Pokemon> listPokemon = responsePokemon.getResults();
@@ -71,6 +100,7 @@ public class KantoActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponsePokemon> call, Throwable t) {
+                bool = true;
                 Log.e(TAG, "onFailure: " + t.getMessage());
             }
         });

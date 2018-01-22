@@ -4,6 +4,7 @@ import org.esia.hien_tran.pokepokedex.models.ResponsePokemon;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 /**
  * Created by alexhien on 22/01/2018.
@@ -12,5 +13,5 @@ import retrofit2.http.GET;
 public interface PokeapiService {
 
     @GET("pokemon")
-    Call<ResponsePokemon> getListPokemon();
+    Call<ResponsePokemon> getListPokemon(@Query("limit") int limit, @Query("offset") int offset);
 }
