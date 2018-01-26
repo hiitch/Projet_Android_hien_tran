@@ -13,6 +13,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.esia.hien_tran.pokepokedex.models.Pokemon;
 
+import java.io.Console;
 import java.util.ArrayList;
 
 /**
@@ -29,12 +30,14 @@ public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.
         dataset = new ArrayList<>();
     }
 
+    //Permet d'afficher les vues qui n'ont pas encore été créées
     @Override
     public ListPokemonAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pokemon, parent, false);
         return new ViewHolder(view);
     }
 
+    //Permet d'afficher les éléments dans la vue. Aussi bien utilisée lors d'une la création d'un élément ou la ré-utilisation
     @Override
     public void onBindViewHolder(ListPokemonAdapter.ViewHolder holder, int position) {
         Pokemon p = dataset.get(position);
@@ -48,6 +51,7 @@ public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.
             .into(holder.photoImageView);
     }
 
+    //Retourne la longueur de la liste
     @Override
     public int getItemCount() {
         return dataset.size();
@@ -58,6 +62,7 @@ public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.
          notifyDataSetChanged();
     }
 
+    //Permet d'éviter d'éviter d'exécuter des "findviewbyid" à chaque fois que l'on souhaite remplir la vue
     public class ViewHolder extends RecyclerView.ViewHolder{
         private ImageView photoImageView;
         private TextView nameTextView;

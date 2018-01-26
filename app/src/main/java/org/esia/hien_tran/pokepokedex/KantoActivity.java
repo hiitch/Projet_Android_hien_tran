@@ -60,7 +60,7 @@ public class KantoActivity extends AppCompatActivity {
 
                             bool = false;
                             offset += 20;
-                            getData(offset );
+                            getData(offset);
                         }
                     }
                 }
@@ -78,6 +78,7 @@ public class KantoActivity extends AppCompatActivity {
         getData(offset);
     }
 
+    //On récupère ici la liste des pokémons
     private void getData(int offset){
         PokeapiService service = retrofit.create(PokeapiService.class);
 

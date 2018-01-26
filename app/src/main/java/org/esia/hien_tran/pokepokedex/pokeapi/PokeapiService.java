@@ -12,6 +12,10 @@ import retrofit2.http.Query;
 
 public interface PokeapiService {
 
+    /*
+    *  GET annotation d'HTTP request
+    *  QUERY annotation des paramètres que l'on souhaite récupérer
+    * */
     @GET("pokemon")
     Call<ResponsePokemon> getListPokemon(@Query("limit") int limit, @Query("offset") int offset);
 }

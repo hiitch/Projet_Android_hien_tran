@@ -5,7 +5,7 @@
     <item
         android:id="@+id/menu_information"
         android:title="@string/fr_information"
-        android:icon="@android:drawable/ic_menu_info_details"
+        android:icon="@android:drawable/ic_dialog_email"
         app:showAsAction="always"/>
 
 </menu>
