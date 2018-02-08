@@ -37,7 +37,7 @@ public class ListPokemonAdapter extends RecyclerView.Adapter<ListPokemonAdapter.
         return new ViewHolder(view);
     }
 
-    //Permet d'afficher les éléments dans la vue. Aussi bien utilisée lors d'une la création d'un élément ou la ré-utilisation
+    //Permet d'afficher les éléments dans la vue. Aussi bien utilisée lors de la création d'un élément ou la ré-utilisation
     @Override
     public void onBindViewHolder(ListPokemonAdapter.ViewHolder holder, int position) {
         Pokemon p = dataset.get(position);

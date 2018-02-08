@@ -30,7 +30,6 @@ public class KantoActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ListPokemonAdapter listPokemonAdapter;
 
-    private int offset;
     private boolean bool;
 
     @Override
@@ -42,8 +41,12 @@ public class KantoActivity extends AppCompatActivity {
         listPokemonAdapter = new ListPokemonAdapter(this);
         recyclerView.setAdapter(listPokemonAdapter);
         recyclerView.setHasFixedSize(true);
+
+        //On crée un layout de 3 colonnes
         final GridLayoutManager layoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(layoutManager);
+
+        //Lorsqu'on scroll l'écran
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -59,8 +62,6 @@ public class KantoActivity extends AppCompatActivity {
                             Log.i(TAG,  "FIN de la liste");
 
                             bool = false;
-                            offset += 20;
-                            getData(offset);
                         }
                     }
                 }
@@ -74,15 +75,14 @@ public class KantoActivity extends AppCompatActivity {
 
         bool = true;
 
-        offset = 0;
-        getData(offset);
+        getData();
     }
 
     //On récupère ici la liste des pokémons
-    private void getData(int offset){
+    private void getData(){
         PokeapiService service = retrofit.create(PokeapiService.class);
 
-        Call<ResponsePokemon> pokemonResponseCall=  service.getListPokemon(20, offset);
+        Call<ResponsePokemon> pokemonResponseCall=  service.getListPokemon(151);
 
         pokemonResponseCall.enqueue(new Callback<ResponsePokemon>() {
             @Override

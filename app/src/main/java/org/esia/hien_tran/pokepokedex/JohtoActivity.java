@@ -33,7 +33,9 @@ public class JohtoActivity extends AppCompatActivity{
     private RecyclerView recyclerView;
     private ListPokemonAdapter listPokemonAdapter;
 
-    private int offset;
+    private int limite = 100;
+    private int offset = 151;
+
     private boolean bool;
 
     @Override
@@ -62,8 +64,6 @@ public class JohtoActivity extends AppCompatActivity{
                             Log.i(TAG,  "FIN de la liste");
 
                             bool = false;
-                            offset += 20;
-                            getData(offset);
                         }
                     }
                 }
@@ -77,14 +77,13 @@ public class JohtoActivity extends AppCompatActivity{
 
         bool = true;
 
-        offset = 0;
-        getData(offset);
+        getData(limite, offset);
     }
 
-    private void getData(int offset){
+    private void getData(int limite, int offset){
         PokeapiService service = retrofit.create(PokeapiService.class);
 
-        Call<ResponsePokemon> pokemonResponseCall=  service.getListPokemon(20, offset);
+        Call<ResponsePokemon> pokemonResponseCall=  service.getListPokemon(limite, offset);
 
         pokemonResponseCall.enqueue(new Callback<ResponsePokemon>() {
             @Override

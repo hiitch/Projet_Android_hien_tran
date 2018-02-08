@@ -1,10 +1,14 @@
 <resources>
     <string name="app_name">Pokepokedex</string>
-    <string name="fr_information">Informations</string>
-    <string name="fr_kanto">Kanto</string>
-    <string name="fr_johto">Johto</string>
-    <string name="fr_pokedex">POKÉDEX</string>
-    <string name="fr_titre_boite_dialogue">Informations sur nous</string>
-    <string name="fr_message_boite_dialogue">Les créateurs de cette application sont : Alex HIEN et Xian Tien TRAN :D</string>
-    <string name="fr_retour_boite_dialogue">Retour</string>
+    <string name="information">Informations</string>
+    <string name="kanto">Kanto</string>
+    <string name="johto">Johto</string>
+    <string name="pokedex">POKÉDEX</string>
+    <string name="titre_boite_dialogue">Informations sur nous</string>
+    <string name="message_boite_dialogue">Les créateurs de cette application sont : Alex HIEN et Xian Tien TRAN :D</string>
+    <string name="retour_boite_dialogue">Retour</string>
+    <string name="titre_notification">Pokepokedex</string>
+    <string name="message_notification">Bonjour Sacha, la liste de pokémon est prête !</string>
+    <string name="sujet_mail">Sujet du mail</string>
+    <string name="contenu_mail">Corps de message</string>
 </resources>

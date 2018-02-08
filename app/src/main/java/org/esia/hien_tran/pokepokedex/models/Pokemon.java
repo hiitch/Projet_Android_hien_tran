@@ -4,6 +4,7 @@ package org.esia.hien_tran.pokepokedex.models;
  * Created by alexhien on 22/01/2018.
  */
 
+//Représente les informations que l'on veut récupérer du pokemon du fichier json
 public class Pokemon {
     private String name;
     private String url;

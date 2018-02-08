@@ -17,5 +17,10 @@ public interface PokeapiService {
     *  QUERY annotation des paramètres que l'on souhaite récupérer
     * */
     @GET("pokemon")
+    Call<ResponsePokemon> getListPokemon(@Query("limit") int limit);
+
+
+    @GET("pokemon")
     Call<ResponsePokemon> getListPokemon(@Query("limit") int limit, @Query("offset") int offset);
+
 }
