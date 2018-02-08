@@ -6,9 +6,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -20,8 +22,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -36,21 +40,6 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
     }
-
-   /*public class PokemonUpdate extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.d("TAG", getIntent().getAction());
-            JSONArray arrayPokemon = getPokemonFromFile();
-        }
-    }
-
-    public JSONArray getPokemonFromFile(){
-        try{
-           InputStream is = new FileInputStream(getCacheDir() + "/" + "pokemon.json");
-
-        }
-    }*/
 
    //Permet d'afficher les items de barre de menu (en haut)
     @Override
@@ -79,6 +68,8 @@ public class HomeActivity extends AppCompatActivity {
     //Fonction qui se lance lorsqu'on appuie sur le bouton Kanto
     public void goToKanto(View v){
         Toast.makeText(getApplicationContext(),getString(R.string.kanto),Toast.LENGTH_LONG).show();
+
+        notifer(findViewById(R.id.btn_kanto));
 
         Intent i = new Intent(this, KantoActivity.class);
         startActivity(i);
